@@ -1,0 +1,18 @@
+#ifndef POST_H
+#define POST_H
+class Post {
+public:
+	Post(int x, int y, bool charge); //Constructor for new posts
+
+//Other Methods
+	unsigned int getPostX();
+	unsigned int getPostY();
+	bool isElectrified();
+
+private:
+	//Atributes
+	unsigned int postX;
+	unsigned int postY;
+	bool charge; //true if the post if eletrified, false if not
+};
+#endif
