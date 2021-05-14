@@ -22,16 +22,12 @@ bool menu_validation(int choice) {
 	}
 
 void rules() { //Shows rules
-	/*Work in progress- previous code:*/
-	std::cout << "\n------------------------------------ Rules ------------------------------------\n" <<
-		"You find yourself in a maze made out of eletric fences. Interceptor robots are chasing you!\n" <<
-		"You can move like this (or remain in place by pressing S):\n" << std::endl;
-	std::cout << "  Q  *  W  *  E  \n" << " * * * * * * * *\n" << "  A  * YOU *  D  \n" <<
-		" * * * * * * * *\n" << "  Z  *  X  *  C  " << std::endl; //Displays a table with the possible player movements
-	std::cout << "Where, for example, if you inputed Q you'd move diagonally to the upper left cell.\n" <<
-		"The robots (R) can make the same movements as you.\n" <<
-		"They'll always try to take the shortest path to your position (ignoring obstacles in the way).\n" <<
-		"If a robot hits another robot or a fence (*) they die. They'll then be represented by an 'r'.\n" <<
-		"If you hit a robot or a fence you lose. You also can't move to a cell occupied by a dead robot.\n" <<
-		"If all robots die, you win!\n" << std::endl;
+	string line;
+	ifstream myfile("RULES.txt");
+	//Rules for how a maze is selected are explained when the user selects play
+	while (getline(myfile, line))
+	{
+		cout << line << '\n';
+	}
+	myfile.close();
 }
