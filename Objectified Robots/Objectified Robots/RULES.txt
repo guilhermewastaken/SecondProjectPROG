@@ -1,0 +1,14 @@
+------------------------------------ Rules ------------------------------------
+You find yourself in a maze made out of eletric posts, either electrified or non-electrified. Interceptor robots are chasing you!
+You can move like this (or remain im place by pressing S):
+  Q  *  W  *  E
+ * * * * * * * *
+  A  * YOU *  D
+ * * * * * * * *
+  Z  *  X  *  C
+Where, for example, if you inputed Q you'd move diagonally to the upper left cell.
+The robots (R) can make the same movements as you.
+They'll always try to take the shortest path to your position (ignoring obstacles in the way).
+If a robot hits an electrified post (*) or another robot, they get destroyed. They'll then be represented by an 'r'.
+If you hit a robot or an electrified post you lose. You also can't move to cells occupied by a dead robot or an non-electrified post.
+If you reach an exit gate (O) or all robots die, you win!
