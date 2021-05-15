@@ -7,9 +7,9 @@ public:
 	Post(int x, int y, bool charge); //Constructor for new posts
 
 //Other Methods
-	unsigned int getPostX();
-	unsigned int getPostY();
-	bool isElectrified();
+	unsigned int getPostX() const;
+	unsigned int getPostY() const;
+	bool isElectrified() const;
 
 private:
 	//Atributes

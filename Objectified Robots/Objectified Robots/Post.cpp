@@ -6,16 +6,14 @@ Post::Post(int postX, int postY, bool charge) { //Constructor for new posts
 	this->charge = charge;
 }
 
-unsigned int Post::getPostX() {
+unsigned int Post::getPostX() const {
 	return postX;
 }
 
-unsigned int Post::getPostY() {
+unsigned int Post::getPostY() const {
 	return postY;
 }
 
-bool Post::isElectrified() {
+bool Post::isElectrified() const {
 	return charge;
 }
-
-

@@ -4,9 +4,10 @@
 //Simple functions that deal with the interface
 
 #include "Post.h"
-
+#include "Robot.h"
 
 int main() {
+
 	bool running = true;
 	while (running) { //loop that will only end if the player quits the game (if-break statements throughout the code)
 		int menuChoice = getMenuChoice();
