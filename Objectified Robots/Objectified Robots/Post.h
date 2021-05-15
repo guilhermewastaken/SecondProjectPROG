@@ -1,5 +1,7 @@
 #ifndef POST_H
 #define POST_H
+
+
 class Post {
 public:
 	Post(int x, int y, bool charge); //Constructor for new posts
@@ -15,4 +17,6 @@ private:
 	unsigned int postY;
 	bool charge; //true if the post if eletrified, false if not
 };
+
+
 #endif

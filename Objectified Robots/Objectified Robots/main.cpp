@@ -3,6 +3,9 @@
 #include "MenuRules.h"
 //Simple functions that deal with the interface
 
+#include "Post.h"
+
+
 int main() {
 	bool running = true;
 	while (running) { //loop that will only end if the player quits the game (if-break statements throughout the code)
@@ -21,5 +24,5 @@ int main() {
 			/*Leaderboard class*/
 		}
 	}
-	return 1;
+	return 0;
 }

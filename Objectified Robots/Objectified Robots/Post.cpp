@@ -7,7 +7,7 @@ Post::Post(int postX, int postY, bool charge) { //Constructor for new posts
 }
 
 unsigned int Post::getPostX() {
-	return postX; 
+	return postX;
 }
 
 unsigned int Post::getPostY() {
@@ -17,3 +17,5 @@ unsigned int Post::getPostY() {
 bool Post::isElectrified() {
 	return charge;
 }
+
+
