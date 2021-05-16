@@ -24,12 +24,12 @@ unsigned int Robot::getId() const {
 	return id;
 }
 
-bool Robot::getStatus() const {
+bool Robot::isAlive() const {
 	return status;
 }
 
-void Robot::setStatus(bool status) {
-	this->status = status;
+void Robot::kill() {
+	status = false;
 }
 
 void Robot::moveUp() {

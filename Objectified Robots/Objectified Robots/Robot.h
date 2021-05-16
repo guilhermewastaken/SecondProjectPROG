@@ -1,45 +1,30 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 
-#include <iostream>
-
-using namespace std;
-
-class Robot
-{
+class Robot {
 private:
-
-	//Object variables
+	//Object atributes
 	unsigned int posX;
 	unsigned int posY;
-	unsigned int id;
-	bool status; //Status of the robot (1 - Alive | 0 - Dead)
+	unsigned int id; //unique identification number for each robot
+	bool status; //true if the robot it alive, false if not
 
-
-	//Class variable
+	//Class variable (for id)
 	static unsigned int counter;
 
 public:
 	Robot(unsigned int posX, unsigned int posY); //Class Constructor
 
-	unsigned int getPosX() const; //Gets robot X position
+	unsigned int getPosX() const;
+	unsigned int getPosY() const;
+	unsigned int getId() const;
+	bool isAlive() const; //get() for status atribute
+	void kill(); //Sets robot status to false
 
-	unsigned int getPosY() const; //Gets robot Y position
-
-	unsigned int getId() const; //Gets robot ID (unique identifier)
-
-	bool getStatus() const; //Get current Status of the robot
-
-	void setStatus(bool status); //Sets robot status
-
-	//Moving the player
-
+	//Robot Movements
 	void moveUp();
-
 	void moveDown();
-
 	void moveLeft();
-
 	void moveRight();
 };
 

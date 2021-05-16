@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "MenuRules.h"
-//Simple functions that deal with the interface
+//Simple functions for the menu and rules
 
 #include "Post.h"
 #include "Robot.h"
@@ -14,7 +14,7 @@ int main() {
 		if (menuChoice == 0 || std::cin.eof()) {
 			running = false; //Exits game
 		}
-		else if (menuChoice == 1) { /*Work in Progress*/
+		else if (menuChoice == 1) {
 			rules();
 			//Shows rules
 		}
