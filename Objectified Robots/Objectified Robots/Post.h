@@ -3,13 +3,13 @@
 
 class Post {
 private: //Atributes
-	unsigned int postX;
-	unsigned int postY;
+	unsigned int posX;
+	unsigned int posY;
 	bool charge; //true if the post if eletrified, false if not
 
 public:
 	
-	Post(int x, int y, bool charge); //Class constructor
+	Post(unsigned int posX,unsigned int posY, bool charge); //Class constructor
 
 //Other Methods
 	unsigned int getPostX() const;

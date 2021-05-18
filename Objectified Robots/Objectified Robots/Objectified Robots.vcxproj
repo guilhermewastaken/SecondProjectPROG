@@ -143,8 +143,10 @@
     <ClCompile Include="MenuRules.cpp" />
     <ClCompile Include="Post.cpp" />
     <ClCompile Include="Robot.cpp" />
+    <ClCompile Include="Exit.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Exit.h" />
     <ClInclude Include="MenuRules.h" />
     <ClInclude Include="Post.h" />
     <ClInclude Include="Robot.h" />

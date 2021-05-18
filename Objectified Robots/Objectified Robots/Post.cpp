@@ -1,17 +1,17 @@
 #include "Post.h"
 
-Post::Post(int postX, int postY, bool charge) { //Constructor for new posts 
-	this->postX = postX;
-	this->postY = postY;
+Post::Post(unsigned int posX, unsigned int posY, bool charge) { //Constructor for new posts 
+	this->posX = posX;
+	this->posY = posY;
 	this->charge = charge;
 }
 
 unsigned int Post::getPostX() const {
-	return postX;
+	return posX;
 }
 
 unsigned int Post::getPostY() const {
-	return postY;
+	return posY;
 }
 
 bool Post::isElectrified() const {
