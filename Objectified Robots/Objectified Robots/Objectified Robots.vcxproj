@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuRules.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Post.cpp" />
     <ClCompile Include="Robot.cpp" />
     <ClCompile Include="Exit.cpp" />
@@ -148,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="Exit.h" />
     <ClInclude Include="MenuRules.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Post.h" />
     <ClInclude Include="Robot.h" />
   </ItemGroup>

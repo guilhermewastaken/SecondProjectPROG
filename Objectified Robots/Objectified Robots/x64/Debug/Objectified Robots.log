@@ -1,6 +1,8 @@
 ﻿  main.cpp
   MenuRules.cpp
+  Player.cpp
   Post.cpp
   Robot.cpp
+  Exit.cpp
   Generating Code...
   Objectified Robots.vcxproj -> C:\Users\guilh\OneDrive\Documents\GitHub\SecondProjectPROG\Objectified Robots\x64\Debug\Objectified Robots.exe

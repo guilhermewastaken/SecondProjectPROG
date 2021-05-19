@@ -12,8 +12,8 @@ public:
 	Post(unsigned int posX,unsigned int posY, bool charge); //Class constructor
 
 //Other Methods
-	unsigned int getPostX() const;
-	unsigned int getPostY() const;
+	unsigned int getPosX() const;
+	unsigned int getPosY() const;
 	bool isElectrified() const; //get() for charge atribute
 };
 

@@ -6,11 +6,11 @@ Post::Post(unsigned int posX, unsigned int posY, bool charge) { //Constructor fo
 	this->charge = charge;
 }
 
-unsigned int Post::getPostX() const {
+unsigned int Post::getPosX() const {
 	return posX;
 }
 
-unsigned int Post::getPostY() const {
+unsigned int Post::getPosY() const {
 	return posY;
 }
 
