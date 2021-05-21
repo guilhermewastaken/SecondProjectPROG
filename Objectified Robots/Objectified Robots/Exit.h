@@ -1,5 +1,5 @@
-#ifndef ROBOT_H
-#define ROBOT_H
+#ifndef EXIT_H
+#define EXIT_H
 
 class Exit {
 private:

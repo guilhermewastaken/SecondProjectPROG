@@ -1,4 +1,24 @@
 ﻿  Game.cpp
-  Exit.cpp
-  Generating Code...
-  Objectified Robots.vcxproj -> C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\x64\Debug\Objectified Robots.exe
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.h(38,9): error C2065: 'Exit': undeclared identifier
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.h(38,2): error C2923: 'std::vector': 'Exit' is not a valid template type argument for parameter '_Ty'
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.h(38,2): error C2976: 'std::vector': too few template arguments
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(416): message : see declaration of 'std::vector'
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(3,63): error C2512: 'std::vector': no appropriate default constructor available
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29910\include\vector(416,1): message : see declaration of 'std::vector'
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(23,10): error C2374: 'post': redefinition; multiple initialization
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(19): message : see declaration of 'post'
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(36,4): error C2059: syntax error: '}'
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(22,4): error C2360: initialization of 'post' is skipped by 'case' label
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(19): message : see declaration of 'post'
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(26,4): error C2360: initialization of 'post' is skipped by 'case' label
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(23): message : see declaration of 'post'
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(30,4): error C2360: initialization of 'player' is skipped by 'case' label
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(27): message : see declaration of 'player'
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(30,4): error C2360: initialization of 'post' is skipped by 'case' label
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(23): message : see declaration of 'post'
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(34,4): error C2360: initialization of 'robot' is skipped by 'case' label
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(31): message : see declaration of 'robot'
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(34,4): error C2360: initialization of 'player' is skipped by 'case' label
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(27): message : see declaration of 'player'
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(34,4): error C2360: initialization of 'post' is skipped by 'case' label
+C:\Users\Utilizador\Documents\GitHub\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(23): message : see declaration of 'post'

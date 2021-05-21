@@ -10,6 +10,7 @@
 #include "Post.h"
 #include "Maze.h"
 #include "Player.h"
+#include "Exit.h"
 
 
 using namespace std;
@@ -33,7 +34,8 @@ private:
 private:
 	Maze maze;
 	Player player;
-	vector<Robot> robots;
+	vector<Robot> robotList;
+	vector<Exit> exitList;
 };
 
 

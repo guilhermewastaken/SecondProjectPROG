@@ -14,20 +14,27 @@ Game::Game(const string& filename) : maze(1, 1), player(1, 1) {
 	unsigned int numberOfRow = 0;
 	while (getline(instream, line)) {
 		for (unsigned int i = 0; i < line.size(); i++) {
-			if (line[i] == '*') {
+			switch (line[i]) {
+			case '*':
 				Post post(i, numberOfRow, 1);
 				maze.addPost(post);
-			}
-			else if (line[i] == '+') {
+				break;
+			case '+':
 				Post post(i, numberOfRow, 0);
 				maze.addPost(post);
-			}
-			else if (line[i] == 'H') {
+				break;
+			case 'H':
 				Player player(i, numberOfRow);
-			}
-			else if (line[i] == 'R') {
+				this->player = player;
+				break;
+			case 'R':
 				Robot robot(i, numberOfRow);
-				robots.push_back(robot);
+				robotList.push_back(robot);
+				break;
+			case 'O':
+				Exit exit(i, numberOfRow);
+				exitList.push_back(exit);
+				break;
 			}
 			numberOfRow++;
 		}
