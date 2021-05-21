@@ -5,6 +5,7 @@
 
 #include "Post.h"
 #include "Robot.h"
+#include "Leaderboard.h"
 
 int main() {
 
@@ -22,7 +23,9 @@ int main() {
 			/*Game class*/
 		}
 		else if (menuChoice == 3) {
-			/*Leaderboard class*/
+			int mazeChoice = getMazeChoice();
+			Leaderboard winners(mazeChoice);
+			winners.print();
 		}
 	}
 	return 0;
