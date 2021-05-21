@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Leaderboard.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Maze.cpp" />
     <ClCompile Include="MenuRules.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Post.cpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="Exit.h" />
     <ClInclude Include="Leaderboard.h" />
+    <ClInclude Include="Maze.h" />
     <ClInclude Include="MenuRules.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Post.h" />

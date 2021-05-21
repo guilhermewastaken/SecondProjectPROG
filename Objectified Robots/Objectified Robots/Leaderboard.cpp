@@ -84,7 +84,6 @@ void Leaderboard::addWinner(string name, double time) {
 					name += readSequence;
 				}
 			}
-
 		}
 		instream.ignore(1, '\n'); // clearing the new line
 		scores.push_back(score); // saving the score in the scores vector
@@ -114,6 +113,7 @@ void Leaderboard::addWinner(string name, double time) {
 	}
 	scores = sortedScores;
 	names = tempNames;
+	
 	//by name
 	for (int i = 0; i < names.size(); i++) {
 		if (i == scores.size() - 1) {
@@ -124,7 +124,6 @@ void Leaderboard::addWinner(string name, double time) {
 				sort(names.begin() + i, names.begin()+ t);
 			}
 		}
-
 	}
 
 	//4- Saves the winners in the file
