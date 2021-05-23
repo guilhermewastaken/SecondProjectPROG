@@ -9,37 +9,39 @@ Game::Game(const string& filename) : maze(1, 1), player(1, 1) {
 	char charToIgnore;
 
 	instream >> rows >> charToIgnore >> columns; //Gets the rows and columns of the maze
+	getline(instream, line); // Clear the line
 	Maze maze(rows, columns);
 	this->maze = maze;
 	unsigned int numberOfRow = 0;
 	while (getline(instream, line)) {
 		for (unsigned int i = 0; i < line.size(); i++) {
-			switch (line[i]) {
-			case '*':
-				Post post(i, numberOfRow, "Electrified"); 
+			if (line[i] == '*') {
+				Post post(i, numberOfRow, "Electrified");
 				maze.addPost(post); //Adds electrified post to maze
-				break;
-			case '+':
-				Post post(i, numberOfRow, "Not electrified"); 
+			}
+			else if (line[i] == '+') {
+				Post post(i, numberOfRow, "Not electrified");
 				maze.addPost(post); //Adds not electrified post to maze
-				break;
-			case 'O':
+			}
+			else if (line[i] == 'O') {
 				Post post(i, numberOfRow, "Exit");
 				maze.addPost(post); //Adds exit to maze
-				break;
-			case 'H':
+			}
+			else if (line[i] == 'H') {
 				Player player(i, numberOfRow);
 				this->player = player;
-				break;
-			case 'R':
+			}
+			else if (line[i] == 'R') {
 				Robot robot(i, numberOfRow);
 				robotList.push_back(robot);
-				break;
 			}
-			numberOfRow++;
+			
 		}
+		numberOfRow++;
 	}
+	instream.close();
 }
+
 
 //Collisions
 bool Game::collision(Robot& robot, Post& post) {

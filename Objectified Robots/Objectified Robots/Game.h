@@ -1,4 +1,5 @@
 #ifndef GAME_H
+
 #define GAME_H
 
 #include <iostream>
@@ -44,7 +45,7 @@ private: //Private methods
 												  // other methods, for example:
 	// to check if player is trying to move to a valid place
 	// to apply a valid play and check collisions
-}
+};
 
 
 #endif

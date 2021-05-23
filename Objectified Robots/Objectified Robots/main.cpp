@@ -7,6 +7,8 @@
 #include "Robot.h"
 #include "Leaderboard.h"
 
+#include "Game.h"
+
 int main() {
 
 	bool running = true;
@@ -21,9 +23,35 @@ int main() {
 		}
 		else if (menuChoice == 2) {
 			/*Game class*/
+			int mazeChoice = getMazeChoice();
+			
+			if (std::cin.eof()) {
+				break;
+			}
+			
+			string mazeName = getMazeName(mazeChoice);
+			
+			while (mazeName == "ERROR") {
+				cout << "Maze Not Found!" << endl;
+				int mazeChoice = getMazeChoice();
+				cout << mazeChoice << endl;
+
+				if (std::cin.eof()) {
+					break;
+				}
+				
+				mazeName = getMazeName(mazeChoice);
+			}
+			Game game(mazeName);
+			
 		}
 		else if (menuChoice == 3) {
 			int mazeChoice = getMazeChoice();
+			
+			if (std::cin.eof()) {
+				break;
+			}
+			
 			Leaderboard winners(mazeChoice);
 			winners.print();
 		}

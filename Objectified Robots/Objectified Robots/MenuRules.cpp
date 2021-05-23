@@ -43,9 +43,35 @@ int getMazeChoice() { //Displays a basic menu and gets a (validated) maze choice
 
 bool mazeValidation(int choice) {
 	if (((cin.peek() == '\n') && (choice > 0) && (choice < 100)) || cin.eof()) {
+
 		return true; //Inputs were inserted correctly and buffer is clear or player left the game
 	}
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	return false; //Some error occured, clears buffer and indicates invalid input
+}
+
+string getMazeName(int choice) {
+	
+	ifstream instream;
+	stringstream name;
+	string mazeName;
+
+	if (choice < 10) {
+		name << "MAZE_0"; //if maze number is less than 10, the number is filled with an 0.
+	}
+	else {
+		name << "MAZE_";
+	}
+
+	name << choice << ".txt"; //Completes the maze name
+	mazeName = name.str(); //Saves the name to a string for convenience
+
+	instream.open(mazeName);
+
+	if (instream.fail()) {
+		mazeName = "ERROR";
+	}
+	instream.close();
+	return mazeName;
 }
