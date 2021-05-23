@@ -17,7 +17,7 @@ public:
 	Maze(int numRows, int numCols); //Class constructor
 	void addPost(const Post& post); //Adds new posts to the maze
 	string postTypeAtPos(int posX, int posY); //Indicates if there are posts in target location and if yes, what type
-	//Returns "None", "Electrified" or "Not Electrified"
+	//Returns "None", "Electrified", "Not Electrified" and "Exit"
 };
 
 

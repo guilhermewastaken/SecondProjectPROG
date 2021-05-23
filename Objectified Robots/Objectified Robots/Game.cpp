@@ -16,12 +16,16 @@ Game::Game(const string& filename) : maze(1, 1), player(1, 1) {
 		for (unsigned int i = 0; i < line.size(); i++) {
 			switch (line[i]) {
 			case '*':
-				Post post(i, numberOfRow, 1);
-				maze.addPost(post);
+				Post post(i, numberOfRow, "Electrified"); 
+				maze.addPost(post); //Adds electrified post to maze
 				break;
 			case '+':
-				Post post(i, numberOfRow, 0);
-				maze.addPost(post);
+				Post post(i, numberOfRow, "Not electrified"); 
+				maze.addPost(post); //Adds not electrified post to maze
+				break;
+			case 'O':
+				Post post(i, numberOfRow, "Exit");
+				maze.addPost(post); //Adds exit to maze
 				break;
 			case 'H':
 				Player player(i, numberOfRow);
@@ -30,10 +34,6 @@ Game::Game(const string& filename) : maze(1, 1), player(1, 1) {
 			case 'R':
 				Robot robot(i, numberOfRow);
 				robotList.push_back(robot);
-				break;
-			case 'O':
-				Exit exit(i, numberOfRow);
-				exitList.push_back(exit);
 				break;
 			}
 			numberOfRow++;

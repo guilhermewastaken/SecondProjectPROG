@@ -147,10 +147,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Post.cpp" />
     <ClCompile Include="Robot.cpp" />
-    <ClCompile Include="Exit.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Exit.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Leaderboard.h" />
     <ClInclude Include="Maze.h" />

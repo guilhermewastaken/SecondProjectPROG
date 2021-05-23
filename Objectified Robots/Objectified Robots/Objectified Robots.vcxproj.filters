@@ -27,9 +27,6 @@
     <ClCompile Include="Post.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Exit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,9 +48,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Post.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Exit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">

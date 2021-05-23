@@ -1,9 +1,9 @@
 #include "Post.h"
 
-Post::Post(unsigned int posX, unsigned int posY, bool charge) { //Constructor for new posts 
+Post::Post(unsigned int posX, unsigned int posY, string type) { //Constructor for new posts 
 	this->posX = posX;
 	this->posY = posY;
-	this->charge = charge;
+	this->type = type;
 }
 
 unsigned int Post::getPosX() const {
@@ -14,6 +14,6 @@ unsigned int Post::getPosY() const {
 	return posY;
 }
 
-bool Post::isElectrified() const {
-	return charge;
+string Post::getType() const {
+	return type;
 }
