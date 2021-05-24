@@ -47,7 +47,7 @@ void Leaderboard::addWinner(string name, double time) {
 	ofstream outstream;
 	if (emptyBoard) {
 		outstream.open(mazeName);
-		outstream << "Player			       – Time" << endl;
+		outstream << "Player			       - Time" << endl;
 		outstream << "-------------------------------------" << endl; // Two default lines
 		outstream << left << setw(15) << name << "			- " << time << endl; //Name and score of the player
 		emptyBoard = false;

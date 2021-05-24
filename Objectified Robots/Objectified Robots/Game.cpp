@@ -11,7 +11,6 @@ Game::Game(const string& filename) : maze(1, 1), player(1, 1) {
 	instream >> rows >> charToIgnore >> columns; //Gets the rows and columns of the maze
 	getline(instream, line); // Clear the line
 	Maze maze(rows, columns);
-	this->maze = maze;
 	unsigned int numberOfRow = 0;
 	while (getline(instream, line)) {
 		for (unsigned int i = 0; i < line.size(); i++) {
@@ -40,6 +39,7 @@ Game::Game(const string& filename) : maze(1, 1), player(1, 1) {
 		numberOfRow++;
 	}
 	instream.close();
+	this->maze = maze;
 }
 
 void Game::print() const {

@@ -24,13 +24,13 @@ int main() {
 		else if (menuChoice == 2) {
 			/*Game class*/
 			int mazeChoice = getMazeChoice();
-			
+
 			if (std::cin.eof()) {
 				break;
 			}
-			
+
 			string mazeName = getMazeName(mazeChoice);
-			
+
 			while (mazeName == "ERROR") {
 				cout << "Maze Not Found!" << endl;
 				int mazeChoice = getMazeChoice();
@@ -39,12 +39,12 @@ int main() {
 				if (std::cin.eof()) {
 					break;
 				}
-				
+
 				mazeName = getMazeName(mazeChoice);
 			}
 			Game game(mazeName);
 			game.print();
-			
+
 		}
 		else if (menuChoice == 3) {
 			int mazeChoice = getMazeChoice();

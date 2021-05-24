@@ -11,7 +11,6 @@ void Maze::addPost(const Post& post) {
 
 string Maze::postTypeAtPos(int posX, int posY) const {
 	for (int i = 0; i < postList.size(); i++) { //Iterates through all the posts
-		cout << postList[i].getPosX() << endl;
 		if ((postList[i].getPosX() == posX) && (postList[i].getPosY() == posY)) { //There's a post at target location
 			return postList[i].getType(); //Returns the post type
 		}
