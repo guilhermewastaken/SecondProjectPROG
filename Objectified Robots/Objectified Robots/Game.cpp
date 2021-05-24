@@ -35,13 +35,61 @@ Game::Game(const string& filename) : maze(1, 1), player(1, 1) {
 				Robot robot(i, numberOfRow);
 				robotList.push_back(robot);
 			}
-			
+
 		}
 		numberOfRow++;
 	}
 	instream.close();
 }
 
+void Game::print() const {
+	for (int row = 0; row < maze.getRows(); row++) {
+
+		for (int col = 0; col < maze.getCols(); col++) { //Iterates through each position in the matrix
+			//If several objects are in the same cell only one will be outputed. The priorities are as follows:
+			// 1- Player	2- Robots	3- Posts
+			if (col == player.getPosX() && row == player.getPosY()) { //Player object found in the cell
+				if (player.isAlive()) {
+					cout << "H"; //The player is alive, prints H and moves on to next cell
+					continue;
+				}
+				cout << "h"; //The player is dead, prints h and moves on to next cell
+				continue;
+			}
+
+			bool skipCell = false;
+			for (int i = 0; i < robotList.size(); i++) { //iterates through all the robots
+				if (col == robotList[i].getPosX() && row == robotList[i].getPosY()) { //Robot object found in the cell
+					if (robotList[i].isAlive()) {
+						cout << "R"; //The robot is alive, prints R and moves on to next cell
+						skipCell = true;
+						break;
+					}
+					cout << "r"; //The robot is dead, prints r and moves on to next cell
+					continue;
+				}
+			}
+			if (skipCell) {
+				continue;
+			}
+			
+			//Checks for posts
+			if (maze.postTypeAtPos(col, row) == "Exit") { //There's an exit in the cell
+				cout << "O";
+			}
+			else if (maze.postTypeAtPos(col, row) == "Electrified") { //There's an electrified post in the cell
+				cout << "*";
+			}
+			else if (maze.postTypeAtPos(col, row) == "Not Electrified") { //There's a non electrified in the cell
+				cout << "+";
+			}
+			else if (maze.postTypeAtPos(col, row) == "None") { //Nothig was found occupying the cell
+				cout << " ";
+			} 
+		}
+		cout << "\n"; //Moves onto next paragraph
+	}
+}
 
 //Collisions
 bool Game::collision(Robot& robot, Post& post) {

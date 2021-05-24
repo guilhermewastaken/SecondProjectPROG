@@ -30,9 +30,9 @@ public:
 	// using the chars read from the file
 	bool play(); // implements the game loop; returns true if player wins, false otherwise
 	bool isValid();
-
-private: //Private methods
 	void print() const;
+private: //Private methods
+	
 
 	//Collisions
 	bool collision(Robot& robot, Post& post); // Checks if robot collided with post (and possibly kill robot)

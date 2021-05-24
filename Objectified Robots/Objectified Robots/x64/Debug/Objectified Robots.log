@@ -1,6 +1,2 @@
-﻿  Game.cpp
-  MenuRules.cpp
-  main.cpp
-  Generating Code...
-D:\PROJECTS\SecondProjectPROG\Objectified Robots\Objectified Robots\Game.cpp(83): warning C4715: 'Game::collision': not all control paths return a value
-  Objectified Robots.vcxproj -> D:\PROJECTS\SecondProjectPROG\Objectified Robots\x64\Debug\Objectified Robots.exe
+﻿  Maze.cpp
+  Objectified Robots.vcxproj -> C:\Users\guilh\OneDrive\Documents\GitHub\SecondProjectPROG\Objectified Robots\x64\Debug\Objectified Robots.exe
