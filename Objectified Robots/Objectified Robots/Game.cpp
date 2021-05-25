@@ -91,6 +91,59 @@ void Game::print() const {
 	}
 }
 
+//Movements
+void Game::move(Robot& robot, Player& player) {
+	//Horizontal movement
+	if ((player.getPosX() - robot.getPosX()) < 0) { //The player is left of the robot
+		robot.moveLeft();
+	}
+	else if ((player.getPosX() - robot.getPosX()) > 0) { //The player is right of the robot
+		robot.moveRight();
+	}
+	//If their PosX is the same there's no need to move horizontally
+
+	//Vertical movement
+	if ((player.getPosY() - robot.getPosY()) < 0) { //The player is higher than the robot
+		robot.moveUp();
+	}
+	else if ((player.getPosY() - robot.getPosY()) > 0) { //The player is right of the robot
+		robot.moveDown();
+	}
+	//If their PosY is the same there's no need to move vertically
+}
+void Game::move(Player& player, char direction) { //The previous cell occupied by the player should be saved and
+												//the validity of the movement confirmed
+	if (direction == 'Q' || direction == 'q') {
+		player.moveLeft(); //Upper left
+		player.moveUp();
+	}
+	else if (direction == 'A' || direction == 'a') {
+		player.moveLeft(); //Left
+	}
+	else if (direction == 'Z' || direction == 'z') {
+		player.moveDown();//Lower left
+		player.moveLeft();
+	}
+	else if(direction == 'X' || direction == 'x') {
+		player.moveDown(); //Down
+	}
+	else if (direction == 'C' || direction == 'c') {
+		player.moveRight(); //Lower right
+		player.moveDown();
+	}
+	else if (direction == 'D' || direction == 'd') {
+		player.moveRight(); //Right
+	}
+	else if (direction == 'E' || direction == 'e') {
+		player.moveRight(); //Upper right
+		player.moveUp();
+	}
+	else if (direction == 'W' || direction == 'w') {
+		player.moveUp(); //Up
+	}
+}
+
+
 //Collisions
 bool Game::collision(Robot& robot, Post& post) {
 	if ((robot.getPosX() == post.getPosX()) && (robot.getPosY() == post.getPosY())) { //Both at the same position

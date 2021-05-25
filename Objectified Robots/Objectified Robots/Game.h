@@ -33,6 +33,9 @@ public:
 	void print() const;
 private: //Private methods
 	
+	//Movements
+	void move(Robot& robot, Player& player); //Makes the robots move (individually) towards the player
+	void move(Player& player, char direction); //Makes player movement (doesn't check validity)
 
 	//Collisions
 	bool collision(Robot& robot, Post& post); // Checks if robot collided with post (and possibly kill robot)
@@ -41,10 +44,6 @@ private: //Private methods
 	bool collision(Post& post, Player& player); //Checks if player collided with post (and possibly kill player)
 	bool victory(Post& post, Player& player) const; //Checks if the player hit an exit
 	//Must only be used after a collision with a post has been established
-
-												  // other methods, for example:
-	// to check if player is trying to move to a valid place
-	// to apply a valid play and check collisions
 };
 
 
