@@ -1,5 +1,7 @@
 #include "Game.h"
 
+using namespace std;
+
 Game::Game(const string& filename) : maze(1, 1), player(1, 1) {
 	ifstream instream;
 	string line;
@@ -8,7 +10,7 @@ Game::Game(const string& filename) : maze(1, 1), player(1, 1) {
 	int rows, columns;
 	char charToIgnore;
 
-	victory = false;
+	setVictory(false);
 
 	instream >> rows >> charToIgnore >> columns; //Gets the rows and columns of the maze
 	getline(instream, line); // Clear the line
@@ -57,15 +59,20 @@ void Game::play() {
 			initialCollisionCheck(direction); //Checks if the player hit anything
 		} while (!validMove(direction)); //Checks if the movement was valid. If not, ask for a new one
 
-		if (getGameResult() == true || player.isAlive() == false) {
+		if (playerVictory() == true || player.isAlive() == false) {
+			print();
 			return; //If the player already died or won the game it ends
 		}
 
 		for (int i = 0; i < robotList.size(); i++) {//Iterating through all the robots
+			if (!robotList[i].isAlive()) {
+				continue; //If the robot is dead he won't move
+			}
 			int prevRobotPosX = robotList[i].getPosX();
 			int prevRobotPosY = robotList[i].getPosY();
 			move(robotList[i]); //Makes each robot move towards the player
 			if (collision(robotList[i])) {
+				print();
 				return; //The robot hit the player, game ends
 			}
 			if (postCollision(robotList[i])) {
@@ -74,10 +81,16 @@ void Game::play() {
 				} //If the robot hit an electrified post, his movement will be reversed
 				//Otherwise he'll replace the post
 			}
+			for (int t = 0; t < robotList.size(); t++) {
+				if (i != t) { //Iterates again through all the robots (except itself) and checks for collisions
+					collision(robotList[i], robotList[t]); 
+				}										
+			}
 		}
 	}
 }
 
+//I/O Methods
 void Game::print() const {
 	for (int row = 0; row < maze.getRows(); row++) {
 
@@ -101,8 +114,9 @@ void Game::print() const {
 						skipCell = true;
 						break;
 					}
+					skipCell = true;
 					cout << "r"; //The robot is dead, prints r and moves on to next cell
-					continue;
+					break;
 				}
 			}
 			if (skipCell) {
@@ -127,7 +141,6 @@ void Game::print() const {
 	}
 }
 
-//Input/Output
 char Game::getDirection() {
 	char direction;
 	cout << "\nYour Move [A - left | D - right | W - up | X - down |"
@@ -156,52 +169,27 @@ char Game::getDirection() {
 	}
 }
 
-//Movements
-
-bool Game::validMove(char direction) {
-	if (player.isAlive() == false || getGameResult() == true) {
-		return true; //If the player died or won the game, the movement was valid
-	}
-
-	for (int i = 0; i < robotList.size(); i++) { //Iterates through all he robots
-		if (collision(robotList[i])) {  //If the player hit a robot and didn't die, then the robot was dead
-			reversePlayerMovement(direction); //Reverses the movement and indicates invalid movement
-			cout << "\nInvalid move, please choose a valid direction to move towards"
-				<< "\nRemember that you can't move to cells with dead robots (r) in them";
-			//No need to end line because a new direction will be asked for immediatly after
-			return false; 
-		}
-	}
-
-	if (postCollision(direction)) {
-		reversePlayerMovement(direction); //Reverses the movement and indicates invalid movement
-		cout << "\nInvalid move, please choose a valid direction to move towards"
-			<< "\nRemember that you can't move to cells with non electrified posts (+) in them";
-		//No need to end line because a new direction will be asked for immediatly after
-		return false;
-	}
-	return true;
-}
-
+//Movement Methods
 void Game::move(Robot& robot) {
 	//Horizontal movement
-	if ((player.getPosX() - robot.getPosX()) < 0) { //The player is left of the robot
+	if ((player.getPosX() < robot.getPosX())) { //The player is left of the robot
 		robot.moveLeft();
 	}
-	else if ((player.getPosX() - robot.getPosX()) > 0) { //The player is right of the robot
+	else if ((player.getPosX() > robot.getPosX())) { //The player is right of the robot
 		robot.moveRight();
 	}
 	//If their PosX is the same there's no need to move horizontally
 
 	//Vertical movement
-	if ((player.getPosY() - robot.getPosY()) < 0) { //The player is higher than the robot
+	if ((player.getPosY() < robot.getPosY())) { //The player is higher than the robot
 		robot.moveUp();
 	}
-	else if ((player.getPosY() - robot.getPosY()) > 0) { //The player is right of the robot
+	else if ((player.getPosY() > robot.getPosY())) { //The player is lower than the robot
 		robot.moveDown();
 	}
 	//If their PosY is the same there's no need to move vertically
 }
+
 void Game::move(char direction) {
 	if (direction == 'Q' || direction == 'q') {
 		player.moveLeft(); //Upper left
@@ -265,7 +253,32 @@ void Game::reversePlayerMovement(char direction) {
 	}
 }
 
-//Collision checks
+bool Game::validMove(char direction) {
+	if (player.isAlive() == false || playerVictory() == true) {
+		return true; //If the player died or won the game, the movement was valid
+	}
+
+	for (int i = 0; i < robotList.size(); i++) { //Iterates through all he robots
+		if (collision(robotList[i])) {  //If the player hit a robot and didn't die, then the robot was dead
+			reversePlayerMovement(direction); //Reverses the movement and indicates invalid movement
+			cout << "\nInvalid move, please choose a valid direction to move towards"
+				<< "\nRemember that you can't move to cells with dead robots (r) in them";
+			//No need to end line because a new direction will be asked for immediatly after
+			return false;
+		}
+	}
+
+	if (postCollision(direction)) {
+		reversePlayerMovement(direction); //Reverses the movement and indicates invalid movement
+		cout << "\nInvalid move, please choose a valid direction to move towards"
+			<< "\nRemember that you can't move to cells with non electrified posts (+) in them";
+		//No need to end line because a new direction will be asked for immediatly after
+		return false;
+	}
+	return true;
+}
+
+//Collision Methods
 void Game::initialCollisionCheck(char direction) {
 	for (int i = 0; i < robotList.size(); i++) {//Iterating through all the robots
 		if (collision(robotList[i]) ){
@@ -273,15 +286,6 @@ void Game::initialCollisionCheck(char direction) {
 		}
 	}
 	postCollision(direction); //Checks for collisions with posts
-}
-
-//Collisions
-bool Game::postCollision(Robot& robot) {
-	if (maze.postTypeAtPos(robot.getPosX(),robot.getPosY()) != "None") { //The robot hit a post
-		robot.kill(); //It dies, the position where he will lie dead will be up to the caller function to determine
-		return true;
-	}
-	return false; //No collision
 }
 
 bool Game::collision(Robot& robot) {
@@ -305,6 +309,14 @@ bool Game::collision(Robot& robot1, Robot& robot2) {
 	return false; //No collision
 }
 
+bool Game::postCollision(Robot& robot) {
+	if (maze.postTypeAtPos(robot.getPosX(), robot.getPosY()) != "None") { //The robot hit a post
+		robot.kill(); //It dies, the position where he will lie dead will be up to the caller function to determine
+		return true;
+	}
+	return false; //No collision
+}
+
 bool Game::postCollision(char direction) {
 	if (maze.postTypeAtPos(player.getPosX(),player.getPosY()) == "Electrified") { //Player hit an electrified post
 		player.kill();
@@ -316,16 +328,17 @@ bool Game::postCollision(char direction) {
 		return true; //Invalid movement, the player movement will be reversed in validMove(...)
 	}
 	else if (maze.postTypeAtPos(player.getPosX(), player.getPosY()) == "Exit") { //The player hit an exit
-		setGameResult(true);
+		setVictory(true);
 		return true; //The player won the game
 	}
 	return false; //Player didn't hit a post
 }
 
-void Game::setGameResult(bool result) {
+//Game Result Methods
+void Game::setVictory(bool result) {
 	victory = result;
 }
 
-bool Game::getGameResult() {
+bool Game::playerVictory() {
 	return victory;
 }
