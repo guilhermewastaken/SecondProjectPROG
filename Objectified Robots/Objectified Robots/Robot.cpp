@@ -32,6 +32,11 @@ void Robot::kill() {
 	status = false;
 }
 
+void Robot::setPos(unsigned int posX, unsigned int posY) {
+	this->posX = posX;
+	this->posY = posY;
+}
+
 void Robot::moveUp() {
 	posY--;
 }

@@ -43,7 +43,7 @@ int main() {
 				mazeName = getMazeName(mazeChoice);
 			}
 			Game game(mazeName);
-			game.print();
+			game.play();
 
 		}
 		else if (menuChoice == 3) {

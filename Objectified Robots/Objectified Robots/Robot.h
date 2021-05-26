@@ -22,6 +22,7 @@ public:
 	void kill(); //Sets robot status to false
 
 	//Robot Movements
+	void setPos(unsigned int posX, unsigned int posY); //Non descriptive position set for reversing the robot's movement
 	void moveUp();
 	void moveDown();
 	void moveLeft();
