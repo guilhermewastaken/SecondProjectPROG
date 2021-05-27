@@ -45,6 +45,9 @@ int main() {
 			Game game(mazeName);
 			game.play();
 
+			if (std::cin.eof()) {
+				break;
+			}
 		}
 		else if (menuChoice == 3) {
 			int mazeChoice = getMazeChoice();

@@ -23,7 +23,7 @@ Game::Game(const string& filename) : maze(1, 1), player(1, 1) {
 				maze.addPost(post); //Adds electrified post to maze
 			}
 			else if (line[i] == '+') {
-				Post post(i, numberOfRow, "Not electrified");
+				Post post(i, numberOfRow, "Not Electrified");
 				maze.addPost(post); //Adds not electrified post to maze
 			}
 			else if (line[i] == 'O') {
