@@ -22,7 +22,49 @@ Leaderboard::Leaderboard(unsigned int mazeNumber) { //Constructor for the leader
 	if (instream.fail()) { //If the file doesn't already exist
 		instream.close();
 		outstream.open(mazeName); //Creates one
-		outstream << "Player			       – Time" << endl;
+		outstream << "Player			       - Time" << endl;
+		outstream << "-------------------------------------" << endl; // Writes the two default lines
+		outstream.close();
+	}
+	instream.close();
+
+	//3- Checks if there already are winners 
+	string line;
+	int lineNum = 0;
+	instream.open(mazeName);
+	while (getline(instream, line)) {
+		lineNum++; // Gets the number of lines in the file
+	}
+	emptyBoard = false;
+	instream.close();
+	if (lineNum == 2) {
+		emptyBoard = true; //If there are only 2 lines, then no winner has been added yet
+	}
+}
+
+void Leaderboard::updateMazeNumber(unsigned int mazeNumber) {
+	//Makes sure a file for the winners of mazeNumber's maze already exists and saves its name for later use
+	//MazeNumber has already been validated
+
+	//1- Creating the name of the winners file from mazeNumber
+	stringstream name;
+	if (mazeNumber < 10) {
+		name << "MAZE_0"; //if maze number is less than 10, the number is filled with an 0.
+	}
+	else {
+		name << "MAZE_";
+	}
+	name << mazeNumber << "_WINNERS.txt"; //Completes the maze name
+	mazeName = name.str(); //Saves the name to a string for convenience
+
+	//2- Making sure the file exists
+	ifstream instream;
+	ofstream outstream;
+	instream.open(mazeName);
+	if (instream.fail()) { //If the file doesn't already exist
+		instream.close();
+		outstream.open(mazeName); //Creates one
+		outstream << "Player			       - Time" << endl;
 		outstream << "-------------------------------------" << endl; // Writes the two default lines
 		outstream.close();
 	}
@@ -41,7 +83,7 @@ Leaderboard::Leaderboard(unsigned int mazeNumber) { //Constructor for the leader
 	}
 }
 
-void Leaderboard::addWinner(string name, double time) {
+void Leaderboard::addWinner(string name, int time) {
 	//1- If there is no name in the file, the new one can just be added
 	ifstream instream;
 	ofstream outstream;
@@ -51,6 +93,7 @@ void Leaderboard::addWinner(string name, double time) {
 		outstream << "-------------------------------------" << endl; // Two default lines
 		outstream << left << setw(15) << name << "			- " << time << endl; //Name and score of the player
 		emptyBoard = false;
+		outstream.close();
 		return; //Ends the function
 	}
 
@@ -92,8 +135,10 @@ void Leaderboard::addWinner(string name, double time) {
 		currentLine++; // increment the line, because this one is finished
 	}
 	instream.close(); //after finishing reading, we close the file
-
-	//3- Sorts the winners
+	//3-
+	scores.push_back(time);
+	names.push_back(name);
+	//4- Sorts the winners
 	//by score
 	int currentMinimum = INT_MAX;
 	int minimumIndex;
@@ -110,6 +155,7 @@ void Leaderboard::addWinner(string name, double time) {
 		scores.erase(scores.begin() + minimumIndex);
 		tempNames.push_back(names[minimumIndex]);
 		names.erase(names.begin() + minimumIndex);
+		currentMinimum = INT_MAX;
 	}
 	scores = sortedScores;
 	names = tempNames;
@@ -119,15 +165,19 @@ void Leaderboard::addWinner(string name, double time) {
 		if (i == scores.size() - 1) {
 			break;
 		}
-		for (int t = i + 1; names.size(); t++) {
+		for (int t = i + 1; t < names.size(); t++) {
 			if (scores[i] != scores[t]) {
 				sort(names.begin() + i, names.begin()+ t);
 			}
 		}
 	}
 
-	//4- Saves the winners in the file
+	//5- Saves the winners in the file
 	outstream.open(mazeName);
+
+	outstream << "Player			       - Time" << endl;
+	outstream << "-------------------------------------" << endl; // Writes the two default lines
+
 	for (int i = 0; i < names.size(); i++) {
 		outstream << left << setw(15) << names[i] << "			- " << scores[i] << endl;
 	}
@@ -145,5 +195,6 @@ void Leaderboard::print() {
 		while (getline(instream, line)) {
 			cout << line << endl; //Prints every line in the file
 		}
+		instream.close();
 	}
 }

@@ -17,7 +17,7 @@
 
 class Game {
 private: //Atributes
-	int scoreMultiplier = 50; //Arbitrary number defined by us to get an adjusted scoreboard
+	const int SCOREMULTIPLIER = 50; //Arbitrary number defined by us to get an adjusted scoreboard
 	chrono::system_clock::time_point gameBegin; //Time since the beginning of the program
 	string mazeName;
 	Maze maze;

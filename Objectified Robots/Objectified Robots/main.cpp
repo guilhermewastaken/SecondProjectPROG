@@ -10,7 +10,7 @@
 #include "Game.h"
 
 int main() {
-
+	Leaderboard leaderboard(99);
 	bool running = true;
 	while (running) { //loop that will only end if the player quits the game (if-break statements throughout the code)
 		int menuChoice = getMenuChoice();
@@ -43,12 +43,13 @@ int main() {
 				running = false; //Player quit the game
 			}
 			else if (game.playerVictory()) { //The player won the game
-				/*ask for winner name*/
-				Leaderboard winners(mazeChoice);
-				winners.addWinner("teste", game.getScore());
+				//ask for winner name
+				cout << "\nYOU WIN\n" << endl;
+				leaderboard.updateMazeNumber(mazeChoice);
+				leaderboard.addWinner("teste", game.getScore());
 			}
-			else {//The Player lost
-				/*You lost message?*/
+			else { //The Player lost
+				cout << "\nYOU LOST\n" << endl;
 			}
 		}
 		else if (menuChoice == 3) {
@@ -58,9 +59,10 @@ int main() {
 				break;
 			}
 			
-			Leaderboard winners(mazeChoice);
-			winners.print();
+			leaderboard.updateMazeNumber(mazeChoice);
+			leaderboard.print();
 		}
 	}
 	return 0;
+
 }

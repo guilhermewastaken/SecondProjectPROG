@@ -19,7 +19,8 @@ private:
 	bool emptyBoard;
 public:
 	Leaderboard(unsigned int mazeNumber);//Class constructor (makes sure file exists)
-	void addWinner(string name, double time);
+	void updateMazeNumber(unsigned int mazeNumber);
+	void addWinner(string name, int time);
 	void print();
 };
 #endif

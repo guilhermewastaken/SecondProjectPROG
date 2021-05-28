@@ -129,7 +129,7 @@ int Game::getScore() {
 	chrono::system_clock::time_point gameEnd = chrono::system_clock::now(); //Time it took from the moment the programm began
 																		//to this function being called
 	std::chrono::duration<double> diff = gameEnd - gameBegin; //Duration of the game
-	return ((int)(diff.count() * scoreMultiplier)); //Returns the score
+	return ((int)(diff.count() * SCOREMULTIPLIER)); //Returns the score
 }
 void Game::gameStart() {
 	gameBegin = chrono::system_clock::now(); //Time it took from the moment the programm began to this function being called
