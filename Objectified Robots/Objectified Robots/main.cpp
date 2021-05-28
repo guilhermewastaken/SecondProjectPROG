@@ -22,14 +22,15 @@ int main() {
 			//Shows rules
 		}
 		else if (menuChoice == 2) {
-
+			int mazeChoice;
 			Game game(100); //Creates a Game object where game.validMaze() will allways return false
+			
 			do {
-				int mazeChoice = getMazeChoice();
+				mazeChoice = getMazeChoice();
 				if (std::cin.eof()) {
 					break; //The player quit the game, first of two breaks to end the game 
 				}
-				Game game(mazeChoice); //Replaces the previous game object with the player's choice
+				game.updateMazeNumber(mazeChoice); //Replaces the previous game object with the player's choice
 			} while (!game.validMaze()); //Checks if a file with the given name exists. If not, asks for another input
 			if (std::cin.eof()) {
 				break; //The player quit the game, second of two breaks to end the game 
@@ -42,7 +43,9 @@ int main() {
 				running = false; //Player quit the game
 			}
 			else if (game.playerVictory()) { //The player won the game
-				/*Adds player to leaderboard*/
+				/*ask for winner name*/
+				Leaderboard winners(mazeChoice);
+				winners.addWinner("teste", game.getScore());
 			}
 			else {//The Player lost
 				/*You lost message?*/

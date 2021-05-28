@@ -14,6 +14,18 @@ Game::Game(int mazeNumber) : maze(1, 1), player(1, 1) { //Maze and player class 
 	mazeName = name.str(); //Saves the name to a string for convenience
 }
 
+void Game::updateMazeNumber(int mazeNumber) {
+	stringstream name;
+	if (mazeNumber < 10) {
+		name << "MAZE_0"; //if maze number is less than 10, the number is filled with an 0.
+	}
+	else {
+		name << "MAZE_";
+	}
+	name << mazeNumber << ".txt"; //Completes the maze name
+	mazeName = name.str(); //Saves the name to a string for convenience
+}
+
 bool Game::validMaze() {
 	ifstream instream;
 	instream.open(mazeName);
@@ -70,6 +82,7 @@ void Game::createMaze() { //Creates the maze
 }
 
 void Game::play() {
+	gameStart();
 	while (true) { //Infinite loop that will be broken when the player either wins, loses or quits the game
 		char direction;
 		print(); //Prints the current state of the maze
@@ -111,6 +124,15 @@ void Game::play() {
 			}
 		}
 	}
+}
+int Game::getScore() {
+	chrono::system_clock::time_point gameEnd = chrono::system_clock::now(); //Time it took from the moment the programm began
+																		//to this function being called
+	std::chrono::duration<double> diff = gameEnd - gameBegin; //Duration of the game
+	return ((int)(diff.count() * scoreMultiplier)); //Returns the score
+}
+void Game::gameStart() {
+	gameBegin = chrono::system_clock::now(); //Time it took from the moment the programm began to this function being called
 }
 
 //I/O Methods
