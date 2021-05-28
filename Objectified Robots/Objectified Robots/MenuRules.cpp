@@ -50,28 +50,3 @@ bool mazeValidation(int choice) {
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	return false; //Some error occured, clears buffer and indicates invalid input
 }
-
-string getMazeName(int choice) {
-	
-	ifstream instream;
-	stringstream name;
-	string mazeName;
-
-	if (choice < 10) {
-		name << "MAZE_0"; //if maze number is less than 10, the number is filled with an 0.
-	}
-	else {
-		name << "MAZE_";
-	}
-
-	name << choice << ".txt"; //Completes the maze name
-	mazeName = name.str(); //Saves the name to a string for convenience
-
-	instream.open(mazeName);
-
-	if (instream.fail()) {
-		mazeName = "ERROR";
-	}
-	instream.close();
-	return mazeName;
-}

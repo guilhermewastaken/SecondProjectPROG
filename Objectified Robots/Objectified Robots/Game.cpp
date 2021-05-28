@@ -2,10 +2,33 @@
 
 using namespace std;
 
-Game::Game(const string& filename) : maze(1, 1), player(1, 1) {
+Game::Game(int mazeNumber) : maze(1, 1), player(1, 1) { //Maze and player class are initiallized here but will be updated later
+	stringstream name;
+	if (mazeNumber < 10) {
+		name << "MAZE_0"; //if maze number is less than 10, the number is filled with an 0.
+	}
+	else {
+		name << "MAZE_";
+	}
+	name << mazeNumber << ".txt"; //Completes the maze name
+	mazeName = name.str(); //Saves the name to a string for convenience
+}
+
+bool Game::validMaze() {
+	ifstream instream;
+	instream.open(mazeName);
+	if (instream.fail()) { //If the file doesn't exist
+		instream.close();
+		cout << "\nThat maze file doesn't exist." << endl;
+		return false; //This isn't a valid maze
+	}
+	return true; //Else it is
+}
+
+void Game::createMaze() { //Creates the maze
 	ifstream instream;
 	string line;
-	instream.open(filename);
+	instream.open(mazeName);
 
 	int rows, columns;
 	char charToIgnore;

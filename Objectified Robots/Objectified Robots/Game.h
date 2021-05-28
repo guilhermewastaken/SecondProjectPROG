@@ -16,15 +16,20 @@
 
 class Game {
 private: //Atributes
+	string mazeName;
 	Maze maze;
 	Player player;
 	vector<Robot> robotList;
 	bool victory;
 
 public:
-	Game(const string& filename); //Constructor that reads the file and initializes the Maze, the Robots' vector and the Player
-	void play(); // implements the game loop; returns true if player wins, false otherwise
+	//Constructor and maze creation methods
+	Game(int mazeNumber); //Constructor that only stores the file name
+	bool validMaze(); //Checks if the file exists
+	void createMaze(); //Reads the contents of the file and creates objects for classes Maze, Robots and Player
 
+	void play(); // implements the game loop
+	bool playerVictory(); //indicates whether the player won (true) or lost (false)
 private: //Private methods
 
 	//I/O Methods
@@ -49,7 +54,6 @@ private: //Private methods
 
 	//Game result (set and get) Methods
 	void setVictory(bool result);
-	bool playerVictory();
 };
 
 

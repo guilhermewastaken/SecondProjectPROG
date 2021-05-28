@@ -22,31 +22,30 @@ int main() {
 			//Shows rules
 		}
 		else if (menuChoice == 2) {
-			/*Game class*/
-			int mazeChoice = getMazeChoice();
 
-			if (std::cin.eof()) {
-				break;
-			}
-
-			string mazeName = getMazeName(mazeChoice);
-
-			while (mazeName == "ERROR") {
-				cout << "Maze Not Found!" << endl;
+			Game game(100); //Creates a Game object where game.validMaze() will allways return false
+			do {
 				int mazeChoice = getMazeChoice();
-				cout << mazeChoice << endl;
-
 				if (std::cin.eof()) {
-					break;
+					break; //The player quit the game, first of two breaks to end the game 
 				}
-
-				mazeName = getMazeName(mazeChoice);
+				Game game(mazeChoice); //Replaces the previous game object with the player's choice
+			} while (!game.validMaze()); //Checks if a file with the given name exists. If not, asks for another input
+			if (std::cin.eof()) {
+				break; //The player quit the game, second of two breaks to end the game 
 			}
-			Game game(mazeName);
-			game.play();
+
+			game.createMaze();
+			game.play(); //Starts the game
 
 			if (std::cin.eof()) {
-				break;
+				running = false; //Player quit the game
+			}
+			else if (game.playerVictory()) { //The player won the game
+				/*Adds player to leaderboard*/
+			}
+			else {//The Player lost
+				/*You lost message?*/
 			}
 		}
 		else if (menuChoice == 3) {
