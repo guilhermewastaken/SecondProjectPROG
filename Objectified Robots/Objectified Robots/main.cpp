@@ -10,7 +10,7 @@
 #include "Game.h"
 
 int main() {
-	Leaderboard leaderboard(99);
+	Leaderboard leaderboard;
 	bool running = true;
 	while (running) { //loop that will only end if the player quits the game (if-break statements throughout the code)
 		int menuChoice = getMenuChoice();
@@ -23,7 +23,7 @@ int main() {
 		}
 		else if (menuChoice == 2) {
 			int mazeChoice;
-			Game game(100); //Creates a Game object where game.validMaze() will allways return false
+			Game game(99); //Creates a Game object where game.validMaze() will allways return false
 			
 			do {
 				mazeChoice = getMazeChoice();

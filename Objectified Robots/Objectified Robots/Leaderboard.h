@@ -10,17 +10,25 @@
 #include <algorithm>
 #include <cctype>
 #include <iomanip>
-using namespace std;
+
 
 class Leaderboard {
 private:
-	unsigned int mazeNumber;
-	string mazeName;
+	int mazeNumber;
+	std::string mazeName;
 	bool emptyBoard;
 public:
-	Leaderboard(unsigned int mazeNumber);//Class constructor (makes sure file exists)
-	void updateMazeNumber(unsigned int mazeNumber);
-	void addWinner(string name, int time);
+	Leaderboard() = default;//Class constructor
+	//Only exists so a leaderboard object can be declared before the main game loop, its atributes will be given values later
+
+	void updateMazeNumber(int mazeNumber);
+	//Makes sure a file for the winners of mazeNumber's maze already exists and saves its name for later use
+
+	void addWinner(std::string name, int time);
 	void print();
+private:
+	std::string createName(int mazeNumber); //Creates a proper mazeName (MAZE_01_WINNERS.txt) from a mazeNumber (1)
+	bool fileExists(std::string mazeName); //Checks if the file exists
+	int getNumLines(std::string mazeName); //Returns the number of lines of the fileSS
 };
 #endif
