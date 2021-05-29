@@ -12,7 +12,8 @@ int getMenuChoice() { //Displays a basic menu and gets a (validated) menu choice
 }
 
 bool menuValidation(int choice) {
-	if (((cin.peek() == '\n') && (choice == 0 || choice == 1 || choice == 2 || choice == 3)) || cin.eof()) {
+
+	if (((cin.peek() == '\n') && (choice == EXIT || choice == RULES || choice == PLAY || choice == LEADERBOARD)) || cin.eof()) {
 		return true; //Inputs were inserted correctly and buffer is clear or player left the game
 	}
 	cin.clear();
@@ -42,11 +43,33 @@ int getMazeChoice() { //Displays a basic menu and gets a (validated) maze choice
 }
 
 bool mazeValidation(int choice) {
-	if (((cin.peek() == '\n') && (choice > 0) && (choice < 100)) || cin.eof()) {
+	if (((cin.peek() == '\n') && (choice >= MAZEMIN) && (choice <= MAZEMAX)) || cin.eof()) {
 
 		return true; //Inputs were inserted correctly and buffer is clear or player left the game
 	}
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	return false; //Some error occured, clears buffer and indicates invalid input
+}
+
+bool nameValidation(string playerName) {
+	if (playerName.length() > PLAYERNAMEMAXSIZE) { // If the name has more than 15 caracters
+		cin.clear();			// the name is invalid
+		return false;
+	}
+	return true; // else is valid
+}
+
+
+string getPlayerName() {
+	string playerName;
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cout << "Congratulations!! Enter your name (15 caracters Max including space): " << flush;
+	getline(cin, playerName);
+	while (!nameValidation(playerName)) {
+		cout << "Invalid Input \n Your Name (15 caracters Max including space): " << flush;
+		getline(cin, playerName); //The game asks the user for a new movement until he inserts one with less than 15 characters
+	}
+	return playerName;
 }

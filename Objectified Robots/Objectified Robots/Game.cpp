@@ -2,18 +2,6 @@
 
 using namespace std;
 
-Game::Game(int mazeNumber) : maze(1, 1), player(1, 1) { //Maze and player class are initiallized here but will be updated later
-	stringstream name;
-	if (mazeNumber < 10) {
-		name << "MAZE_0"; //if maze number is less than 10, the number is filled with an 0.
-	}
-	else {
-		name << "MAZE_";
-	}
-	name << mazeNumber << ".txt"; //Completes the maze name
-	mazeName = name.str(); //Saves the name to a string for convenience
-}
-
 void Game::updateMazeNumber(int mazeNumber) {
 	stringstream name;
 	if (mazeNumber < 10) {
@@ -193,14 +181,16 @@ char Game::getDirection() {
 		<< "\nC - lower right | S - Don't Move]: "
 		<< flush;
 	cin >> direction;
+
 	while (true) { //Infinite loop that will be broken once a valid direction choice is reached or player quits the game
-		if ((cin.peek() == '\n' && (direction == 'a' || direction == 'A'
-			|| direction == 'x' || direction == 'X' || direction == 'd'
-			|| direction == 'D' || direction == 'w' || direction == 'W'
-			|| direction == 'q' || direction == 'Q' || direction == 's'
-			|| direction == 'S' || direction == 'e' || direction == 'E'
-			|| direction == 'z' || direction == 'Z' || direction == 'c'
-			|| direction == 'C')) || cin.eof()) {
+		direction = tolower(direction); // getting the letter to lowercase
+		
+		if ((cin.peek() == '\n' && (direction == UP
+			|| direction == DOWN		|| direction == LEFT
+			|| direction == RIGHT		|| direction == UPLEFT 
+			|| direction == UPRIGHT		|| direction == DOWNLEFT
+			|| direction == DOWNRIGHT	|| direction == NOMOVE)) 
+			|| cin.eof()) {
 			return direction; //Inputs were inserted correctly and buffer is clear (player may have chosen to quit the game)
 		}
 		cin.clear(); //Since the direction chosen was invalid, the game asks for a new one and buffer is cleared
@@ -236,64 +226,64 @@ void Game::move(Robot& robot) {
 }
 
 void Game::move(char direction) {
-	if (direction == 'Q' || direction == 'q') {
+	if (direction == UPLEFT) {
 		player.moveLeft(); //Upper left
 		player.moveUp();
 	}
-	else if (direction == 'A' || direction == 'a') {
+	else if (direction == LEFT) {
 		player.moveLeft(); //Left
 	}
-	else if (direction == 'Z' || direction == 'z') {
+	else if (direction == DOWNLEFT) {
 		player.moveDown();//Lower left
 		player.moveLeft();
 	}
-	else if(direction == 'X' || direction == 'x') {
+	else if(direction == DOWN) {
 		player.moveDown(); //Down
 	}
-	else if (direction == 'C' || direction == 'c') {
+	else if (direction == DOWNRIGHT) {
 		player.moveRight(); //Lower right
 		player.moveDown();
 	}
-	else if (direction == 'D' || direction == 'd') {
+	else if (direction == RIGHT) {
 		player.moveRight(); //Right
 	}
-	else if (direction == 'E' || direction == 'e') {
+	else if (direction == UPRIGHT) {
 		player.moveRight(); //Upper right
 		player.moveUp();
 	}
-	else if (direction == 'W' || direction == 'w') {
+	else if (direction == UP) {
 		player.moveUp(); //Up
 	}
 	//If no other condition was triggered the player chose to stay still, so there's no need to update his position
 }
 
 void Game::reversePlayerMovement(char direction) {
-	if (direction == 'Q' || direction == 'q') {
+	if (direction == UPLEFT) {
 		player.moveRight(); //The player had moved towards the upper left
 		player.moveDown();
 	}
-	else if (direction == 'A' || direction == 'a') {
+	else if (direction == LEFT) {
 		player.moveRight(); //The player had moved towards the left
 	}
-	else if (direction == 'Z' || direction == 'z') {
+	else if (direction == DOWNLEFT) {
 		player.moveUp();//The player had moved towards the lower left
 		player.moveRight();
 	}
-	else if (direction == 'X' || direction == 'x') {
+	else if (direction == DOWN) {
 		player.moveUp(); //The player had moved downwards
 	}
-	else if (direction == 'C' || direction == 'c') {
+	else if (direction == DOWNRIGHT) {
 		player.moveLeft(); //The player had moved towards the lower right
 		player.moveUp();
 	}
-	else if (direction == 'D' || direction == 'd') {
+	else if (direction == RIGHT) {
 		player.moveLeft(); //The player had moved towards the right
 	}
-	else if (direction == 'E' || direction == 'e') {
+	else if (direction == UPRIGHT) {
 		player.moveLeft(); //The player had moved towards the upper right
 		player.moveDown();
 	}
-	else if (direction == 'W' || direction == 'w') {
+	else if (direction == UP) {
 		player.moveDown(); //The player had moved upwards
 	}
 }
@@ -307,8 +297,8 @@ bool Game::validMove(char direction) {
 		if (collision(robotList[i])) {  //If the player hit a robot and didn't die, then the robot was dead
 			reversePlayerMovement(direction); //Reverses the movement and indicates invalid movement
 			cout << "\nInvalid move, please choose a valid direction to move towards"
-				<< "\nRemember that you can't move to cells with dead robots (r) in them";
-			//No need to end line because a new direction will be asked for immediatly after
+				<< "\nRemember that you can't move to cells with dead robots (r) in them\n" << endl;
+			print();
 			return false;
 		}
 	}
@@ -316,8 +306,8 @@ bool Game::validMove(char direction) {
 	if (postCollision(direction)) {
 		reversePlayerMovement(direction); //Reverses the movement and indicates invalid movement
 		cout << "\nInvalid move, please choose a valid direction to move towards"
-			<< "\nRemember that you can't move to cells with non electrified posts (+) in them";
-		//No need to end line because a new direction will be asked for immediatly after
+			<< "\nRemember that you can't move to cells with non electrified posts (+) in them\n" << endl;
+		print();
 		return false;
 	}
 	return true;

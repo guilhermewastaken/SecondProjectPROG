@@ -14,16 +14,16 @@ int main() {
 	bool running = true;
 	while (running) { //loop that will only end if the player quits the game (if-break statements throughout the code)
 		int menuChoice = getMenuChoice();
-		if (menuChoice == 0 || std::cin.eof()) {
+		if (menuChoice == EXIT || std::cin.eof()) {
 			running = false; //Exits game
 		}
-		else if (menuChoice == 1) {
+		else if (menuChoice == RULES) {
 			rules();
 			//Shows rules
 		}
-		else if (menuChoice == 2) {
+		else if (menuChoice == PLAY) {
 			int mazeChoice;
-			Game game(99); //Creates a Game object where game.validMaze() will allways return false
+			Game game; //Creates a Game object where game.validMaze() will allways return false
 			
 			do {
 				mazeChoice = getMazeChoice();
@@ -43,16 +43,22 @@ int main() {
 				running = false; //Player quit the game
 			}
 			else if (game.playerVictory()) { //The player won the game
-				//ask for winner name
+				
 				cout << "\nYOU WIN\n" << endl;
+
+				int playerScore = game.getScore();
+
+				string playerName;
+				playerName = getPlayerName(); //ask for winner name
+
 				leaderboard.updateMazeNumber(mazeChoice);
-				leaderboard.addWinner("teste", game.getScore());
+				leaderboard.addWinner(playerName, playerScore);
 			}
 			else { //The Player lost
 				cout << "\nYOU LOST\n" << endl;
 			}
 		}
-		else if (menuChoice == 3) {
+		else if (menuChoice == LEADERBOARD) {
 			int mazeChoice = getMazeChoice();
 			
 			if (std::cin.eof()) {

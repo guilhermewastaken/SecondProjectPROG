@@ -27,9 +27,9 @@ void Leaderboard::addWinner(string name, int time) {
 
 	if (emptyBoard) { //If there is no name in the file, the new one can just be added
 		outstream.open(mazeName);
-		outstream << "Player			       - Time" << endl;
-		outstream << "-------------------------------------" << endl; // Two default lines
-		outstream << left << setw(15) << name << "			- " << time << endl; //Name and score of the player
+		outstream << "Player                         - Time" << endl;
+		outstream << "-------------------------------------" << endl; //Writes the two default lines
+		outstream << left << setw(15) << name << "                - " << time << endl; //Name and score of the player
 		emptyBoard = false;
 		outstream.close();
 		return; //Ends the function
@@ -73,7 +73,7 @@ void Leaderboard::addWinner(string name, int time) {
 	vector<string> tempNames;
 	while (scores.size() != 0) { //Until all scores have been processed
 		int currentMinimum = INT_MAX;
-		int minimumIndex;
+		int minimumIndex = 0; // initializing to remove warning
 		for (int i = 0; i < scores.size(); i++) {
 			if (scores[i] < currentMinimum) { //Iterates through every time and selects the smallest
 				currentMinimum = scores[i];
@@ -99,10 +99,10 @@ void Leaderboard::addWinner(string name, int time) {
 
 	//3- Saving the winners in the file
 	outstream.open(mazeName);
-	outstream << "Player			       - Time" << endl;
+	outstream << "Player                         - Time" << endl;
 	outstream << "-------------------------------------" << endl; //Writes the two default lines
 	for (int i = 0; i < names.size(); i++) { //Saves each winner and his time sequencially
-		outstream << left << setw(15) << names[i] << "			- " << scores[i] << endl;
+		outstream << left << setw(15) << names[i] << "                - " << scores[i] << endl;
 	}
 	outstream.close();
 }
@@ -123,7 +123,7 @@ void Leaderboard::print() {
 
 }
 //Private atributes
-string Leaderboard::createName(int MazeNumber) {
+string Leaderboard::createName(int mazeNumber) {
 	stringstream name;
 	if (mazeNumber < 10) {
 		name << "MAZE_0"; //if maze number is less than 10, the number is filled with an 0.

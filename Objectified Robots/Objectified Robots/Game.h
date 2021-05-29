@@ -18,6 +18,17 @@
 class Game {
 private: //Atributes
 	const int SCOREMULTIPLIER = 50; //Arbitrary number defined by us to get an adjusted scoreboard
+
+	const char UP = 'w';
+	const char DOWN = 'x';
+	const char LEFT = 'a';
+	const char RIGHT = 'd';
+	const char UPLEFT = 'q';
+	const char UPRIGHT = 'e';
+	const char DOWNLEFT = 'z';
+	const char DOWNRIGHT = 'c';
+	const char NOMOVE = 's';
+
 	chrono::system_clock::time_point gameBegin; //Time since the beginning of the program
 	string mazeName;
 	Maze maze;
@@ -27,7 +38,7 @@ private: //Atributes
 
 public:
 	//Constructor and maze creation methods
-	Game(int mazeNumber); //Constructor that only stores the file name
+	Game() : maze(1, 1), player(1, 1) {}; //Default Constructor
 	void updateMazeNumber(int mazeNumber); //Changes the file name
 	bool validMaze(); //Checks if the file exists
 	void createMaze(); //Reads the contents of the file and creates objects for classes Maze, Robots and Player
