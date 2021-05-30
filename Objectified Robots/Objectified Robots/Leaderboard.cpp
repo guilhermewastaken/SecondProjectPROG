@@ -55,11 +55,13 @@ void Leaderboard::addWinner(string name, int time) {
 				}
 				else { //If it is neither a "-" nor a number, it is a name
 					name += readSequence;
+					name += " ";
 				}
 			}
 		}
 		instream.ignore(1, '\n'); //Clears the line and moves onto next one(only \n was left)
 		scores.push_back(score); //Saves the score in the scores vector
+		name.erase(name.length() - 1); // removing the extra space
 		names.push_back(name); //Saves the name in the names vector
 	}
 	instream.close();	

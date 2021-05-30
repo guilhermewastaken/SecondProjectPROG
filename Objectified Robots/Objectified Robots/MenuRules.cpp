@@ -71,7 +71,6 @@ bool nameValidation(string playerName) { //Validation function for getPlayerName
 		return true;
 	}
 	cin.clear();
-	cin.ignore(numeric_limits<streamsize>::max(), '\n'); //Clears buffer (since getline didn't)
 	if (playerName.length() <= PLAYERNAMEMAXSIZE) { //If the name has 15 caracters or less		
 		return true;
 	}
