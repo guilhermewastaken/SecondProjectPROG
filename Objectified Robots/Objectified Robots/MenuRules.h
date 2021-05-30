@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <limits>
 
 //Constants used
 const int EXIT = 0;

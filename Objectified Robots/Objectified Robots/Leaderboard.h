@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <cctype>
 #include <iomanip>
+#include <climits>
 
 
 class Leaderboard {

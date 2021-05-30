@@ -13,7 +13,6 @@
 #include "Post.h"
 #include "Maze.h"
 #include "Player.h"
-#include "Exit.h"
 
 class Game {
 private:
