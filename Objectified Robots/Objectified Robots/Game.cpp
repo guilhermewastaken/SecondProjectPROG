@@ -2,6 +2,9 @@
 
 using namespace std;
 
+Game::Game() : maze(1, 1), player(1, 1) { //None of these values will later be used, only here to initialize atributes
+	setVictory(false);
+}
 void Game::updateMazeNumber(int mazeNumber) {
 	stringstream name;
 	if (mazeNumber < 10) {
@@ -34,6 +37,8 @@ void Game::createMaze() { //Creates the maze
 	char charToIgnore;
 
 	setVictory(false);
+
+	robotList.clear(); //Clears the robot list of previous robot instances
 
 	instream >> rows >> charToIgnore >> columns; //Gets the rows and columns of the maze
 	getline(instream, line); // Clear the line

@@ -1,8 +1,8 @@
 #include "Robot.h"
 
-unsigned int Robot::counter = 0;
+int Robot::counter = 0;
 
-Robot::Robot(unsigned int posX, unsigned int posY) {
+Robot::Robot(int posX, int posY) {
 	counter++;
 
 	this->posX = posX;
@@ -12,15 +12,15 @@ Robot::Robot(unsigned int posX, unsigned int posY) {
 
 }
 
-unsigned int Robot::getPosX() const {
+int Robot::getPosX() const {
 	return posX;
 }
 
-unsigned int Robot::getPosY() const {
+int Robot::getPosY() const {
 	return posY;
 }
 
-unsigned int Robot::getId() const {
+int Robot::getId() const {
 	return id;
 }
 
@@ -32,7 +32,7 @@ void Robot::kill() {
 	status = false;
 }
 
-void Robot::setPos(unsigned int posX, unsigned int posY) {
+void Robot::setPos(int posX, int posY) {
 	this->posX = posX;
 	this->posY = posY;
 }

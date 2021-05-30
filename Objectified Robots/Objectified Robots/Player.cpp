@@ -1,15 +1,15 @@
 #include "Player.h"
-Player::Player(unsigned int posX, unsigned int posY) {
+Player::Player(int posX, int posY) {
 	this->posX = posX;
 	this->posY = posY;
 	life = true;
 }
 
-unsigned int Player::getPosX() const {
+int Player::getPosX() const {
 	return posX;
 }
 
-unsigned int Player::getPosY() const {
+int Player::getPosY() const {
 	return posY;
 }
 

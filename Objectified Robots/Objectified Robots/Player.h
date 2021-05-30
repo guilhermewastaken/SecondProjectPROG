@@ -3,15 +3,15 @@
 
 class Player {
 private:
-	unsigned int posX;
-	unsigned int posY;
+	int posX;
+	int posY;
 	bool life; //true if the player it alive, false if not
 
 public:
-	Player(unsigned int posX, unsigned int posY); //Class constructor
+	Player(int posX, int posY); //Class constructor
 
-	unsigned int getPosX() const;
-	unsigned int getPosY() const;
+	int getPosX() const;
+	int getPosY() const;
 	bool isAlive() const; //get() for life atribute
 	void kill(); //sets player's life to false
 	

@@ -38,7 +38,7 @@ private:
 
 public:
 	//Constructor and maze creation methods
-	Game() : maze(1, 1), player(1, 1) {}; //Default Constructor
+	Game(); //Default Constructor
 	void updateMazeNumber(int mazeNumber); //Changes the file name
 	bool validMaze(); //Checks if the file exists
 	void createMaze(); //Reads the contents of the file and creates objects for classes Maze, Robots and Player

@@ -7,18 +7,18 @@ using namespace std;
 
 class Post {
 private: //Atributes
-	unsigned int posX;
-	unsigned int posY;
+	int posX;
+	int posY;
 	string type; //Indicates whether the post is electrified or not and if it is an exit
 	//"Electrified", "Not electrified", "Exit"
 
 public:
 	
-	Post(unsigned int posX,unsigned int posY, string type); //Class constructor
+	Post(int posX,int posY, string type); //Class constructor
 
 //Other Methods
-	unsigned int getPosX() const;
-	unsigned int getPosY() const;
+	int getPosX() const;
+	int getPosY() const;
 	string getType() const;
 };
 
