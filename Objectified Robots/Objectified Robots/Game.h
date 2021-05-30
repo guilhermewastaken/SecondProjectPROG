@@ -16,9 +16,9 @@
 #include "Exit.h"
 
 class Game {
-private: //Atributes
+private:
+	//Constants
 	const int SCOREMULTIPLIER = 50; //Arbitrary number defined by us to get an adjusted scoreboard
-
 	const char UP = 'w';
 	const char DOWN = 'x';
 	const char LEFT = 'a';
@@ -28,7 +28,7 @@ private: //Atributes
 	const char DOWNLEFT = 'z';
 	const char DOWNRIGHT = 'c';
 	const char NOMOVE = 's';
-
+	//Atributes
 	chrono::system_clock::time_point gameBegin; //Time since the beginning of the program
 	string mazeName;
 	Maze maze;

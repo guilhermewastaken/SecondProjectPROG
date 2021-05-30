@@ -125,6 +125,7 @@ void Game::gameStart() {
 
 //I/O Methods
 void Game::print() const {
+	cout << maze.getRows() << " x " << maze.getCols() << endl; //First line with maze size
 	for (int row = 0; row < maze.getRows(); row++) {
 
 		for (int col = 0; col < maze.getCols(); col++) { //Iterates through each position in the matrix
