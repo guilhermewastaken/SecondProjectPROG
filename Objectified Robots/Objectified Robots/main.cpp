@@ -13,7 +13,6 @@ using namespace std;
 
 int main() {
 	Leaderboard leaderboard;
-	Game game; //Creates objects leaderboard and game with default values, they'll later be updated
 
 	while (true) { //loop that will only end if the player quits the game (if-break statements throughout the code)
 		int menuChoice = getMenuChoice();
@@ -25,8 +24,8 @@ int main() {
 			//Shows rules
 		}
 		else if (menuChoice == PLAY) {
-			int mazeChoice;			
-			
+			int mazeChoice;	
+			Game game; //Creates objects leaderboard and game with default values, they'll later be updated
 			do {
 				mazeChoice = getMazeChoice();
 				if (std::cin.eof() || mazeChoice == RETURNTOMENU) {
